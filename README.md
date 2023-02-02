@@ -1,27 +1,45 @@
-# MyStore
+# Curso de Angular: Componentes y Servicios
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.3.
+## Componentes
 
-## Development server
+### ¿Qué son los componentes?
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Son partes de código que tienen funciones en específico. Juntos se forma toda la aplicación.
 
-## Code scaffolding
+Para crear componentes en Angular, usamos la cli con el comando `ng g c todo` -> 'angular create component "nombre"'.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Para recordar: *cada componente debe pertenecer a 1 módulo. Es una relación 1 a 1*.
 
-## Build
+Angular declara los componentes con el uso del decorador `@Component`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Para usar los componentes, basta con llamarlos como si fueran una etiqueta HTML.
 
-## Running unit tests
+El componente de img está construido en img.components.ts:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```typescript
+import { Component } from '@angular/core';
 
-## Running end-to-end tests
+@Component({
+  selector: 'app-img',
+  templateUrl: './img.component.html',
+  styleUrls: ['./img.component.scss']
+})
+export class ImgComponent {
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+}
 
-## Further help
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Su html es img.component.html:
+
+```html
+<p>img works!</p>
+
+```
+
+Y lo usamos en, por ejemplo, app.component.html:
+
+```html
+<app-img></app-img>
+
+```
