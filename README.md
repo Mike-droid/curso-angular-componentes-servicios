@@ -46,6 +46,8 @@ Y lo usamos en, por ejemplo, app.component.html:
 
 ### Uso de Inputs
 
+Los inputs sirven para pasarle información del padre al hijo.
+
 Hagamos que se muestre una imagen por defecto, y si tenemos una url correcta, se mostrará esa otra imagen:
 
 Primero necesitmos FormsModule en nuestra app:
@@ -96,14 +98,14 @@ export class AppComponent {
 
 Hacemos su respectivo código en app.component.html:
 
-```typescript
+```html
 <input type="text" [(ngModel)]="imgParent">
 
 <app-img [img]="imgParent"></app-img>
 
 ```
 
-Usamos `@Input` para que se comuniquen padre e hijo en img.components.ts:
+Usamos el decorador `@Input` para que se comuniquen padre e hijo en img.components.ts:
 
 ```typescript
 import { Component, Input } from '@angular/core';
@@ -126,5 +128,84 @@ Hacemos su respectivo código en img.component.html:
 <ng-template #elseImg>
   <img src="../../assets/images/default.png" alt="default">
 </ng-template>
+
+```
+
+### Uso de Outputs
+
+Los outputs son para pasarle información del hijo al padre.
+
+En el hijo, img.components.ts:
+
+```typescript
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+@Component({
+  selector: 'app-img',
+  templateUrl: './img.component.html',
+  styleUrls: ['./img.component.scss']
+})
+export class ImgComponent {
+  @Input() img: string = ''; //* se comunica con el hijo
+
+  @Output() loaded = new EventEmitter<string>(); //* se comunica con el padre
+
+  imageDefault = './assets/images/default.png'
+
+  imgError() {
+    this.img = this.imageDefault;
+  }
+
+  imgLoaded() {
+    console.log('log hijo!');
+    this.loaded.emit(this.img); //* notificando al padre
+  }
+}
+
+```
+
+con su html img.component.html:
+
+```html
+<img
+  [src]="img"
+  alt="imagen chida"
+  width="200"
+  *ngIf="img; else elseImg"
+  (error)="imgError()"
+  (load)="imgLoaded()"
+>
+<ng-template #elseImg>
+  <img [src]="imageDefault" alt="default">
+</ng-template>
+
+```
+
+Recibimos la información y notificación en el padre, app.component.ts:
+
+```typescript
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  imgParent = '';
+
+  onLoaded(img: string) {
+    console.log('log padre!', img); //* img viene del hijo
+  }
+}
+
+```
+
+y su html, app.component.html:
+
+```html
+<input type="text" [(ngModel)]="imgParent">
+
+<app-img (loaded)="onLoaded($event)" [img]="imgParent"></app-img>
 
 ```
