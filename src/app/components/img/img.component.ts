@@ -19,7 +19,7 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
 
   img: string = '';
 
-  @Input()
+  @Input('src')
   set changeImg(newImg: string) {
     this.img = newImg;
     console.log('change just img =>', this.img);
@@ -45,11 +45,6 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     //* before render - only once
     //* aquí sí podemos usar async await
     console.log(`ngOnInit => this.img = ${this.img}`);
-
-    this.counterFn = window.setInterval(() => {
-      this.counter += 1;
-      console.log('running counter');
-    }, 1000)
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -68,7 +63,6 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
   ngOnDestroy(): void {
     //* cuando ya no existe el componente
     console.log(`ngOnDestroy`);
-    window.clearInterval(this.counterFn);
   }
 
   imgError() {

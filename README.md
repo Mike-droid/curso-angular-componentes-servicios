@@ -449,3 +449,7 @@ export class AppComponent {
 </app-img>
 
 ```
+
+### Lista de productos
+
+Creamos el componente con `ng g c components/products-list`.
