@@ -209,3 +209,106 @@ y su html, app.component.html:
 <app-img (loaded)="onLoaded($event)" [img]="imgParent"></app-img>
 
 ```
+
+### Componente para producto
+
+Primero creamos la interfaz del producto, en product.model.ts:
+
+```typescript
+export interface Product {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+}
+
+```
+
+Creamos el componente con `ng g c components/product`. En su código:
+
+product.component.ts:
+
+```typescript
+import { Component, Input } from '@angular/core';
+import { Product } from 'src/app/models/product.model';
+
+@Component({
+  selector: 'app-product',
+  templateUrl: './product.component.html',
+  styleUrls: ['./product.component.scss']
+})
+export class ProductComponent {
+  @Input() product: Product = {
+    id: '',
+    name: '',
+    price: 0,
+    image: ''
+  }
+}
+
+```
+
+y en product.component.html:
+
+```html
+<img [src]="product.image" [alt]="product.name" width="200px">
+<h2>${{ product.price }}</h2>
+<p>{{ product.name }}</p>
+
+```
+
+Usamos el componente en app.component.ts:
+
+```typescript
+import { Component } from '@angular/core';
+import { Product } from './models/product.model';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  imgParent = '';
+
+  products: Product[] = [
+    {
+      id: '1',
+      name: 'EL mejor juguete',
+      price: 565,
+      image: './assets/images/toy.jpg'
+    },
+    {
+      id: '2',
+      name: 'Bicicleta casi nueva',
+      price: 356,
+      image: './assets/images/bike.jpg'
+    },
+    {
+      id: '3',
+      name: 'Colleción de albumnes',
+      price: 34,
+      image: './assets/images/album.jpg'
+    },
+    {
+      id: '4',
+      name: 'Mis libros',
+      price: 23,
+      image: './assets/images/books.jpg'
+    },
+  ];
+
+  onLoaded(img: string) {
+    console.log('log padre!', img); //* img viene del hijo
+  }
+}
+
+```
+
+y lo renderizamos en el html de product.component.html:
+
+```html
+<app-product *ngFor="let product of products" [product]="product"></app-product>
+```
+
+Nota: la parte de `[product]="product"` se entiende por el `*ngFor`.
