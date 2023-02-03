@@ -381,3 +381,71 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
 }
 
 ```
+
+### ngDestoy &amp; SetInput
+
+Algunos eventos pueden seguir ejecutándose aunque su componente ya haya sido destruido. Esto es un problema.
+
+Por ejemplo, tenemos un contador en la UI:
+
+```typescript
+import {
+  Component,
+} from '@angular/core';
+
+@Component({
+  selector: 'app-img',
+  templateUrl: './img.component.html',
+  styleUrls: ['./img.component.scss']
+})
+export class ImgComponent {
+  ngOnInit(): void {
+    this.counterFn = window.setInterval(() => {
+      this.counter += 1;
+      console.log('running counter');
+    }, 1000)
+  }
+
+  ngOnDestroy(): void {
+    window.clearInterval(this.counterFn);
+    //* usamos esto para que el interval no se siga ejecutando
+  }
+}
+
+```
+
+```html
+<h3>{{ counter }}</h3>
+```
+
+```typescript
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  showImage: boolean = true;
+
+  toggleImage() {
+    this.showImage = !this.showImage;
+  }
+}
+
+```
+
+```html
+<button (click)="toggleImage()">Toggle image</button>
+
+<p> {{ showImage }} </p>
+
+<app-img
+  *ngIf="showImage"
+  (loaded)="onLoaded($event)"
+  [img]="imgParent"
+>
+</app-img>
+
+```

@@ -9,6 +9,8 @@ import { Product } from './models/product.model';
 export class AppComponent {
   imgParent = '';
 
+  showImage: boolean = true;
+
   products: Product[] = [
     {
       id: '1',
@@ -38,5 +40,9 @@ export class AppComponent {
 
   onLoaded(img: string) {
     console.log('log padre!', img); //* img viene del hijo
+  }
+
+  toggleImage() {
+    this.showImage = !this.showImage;
   }
 }

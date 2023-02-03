@@ -6,7 +6,8 @@ import {
   OnInit,
   OnChanges,
   AfterViewInit,
-  OnDestroy
+  OnDestroy,
+  SimpleChanges
 } from '@angular/core';
 
 @Component({
@@ -15,11 +16,24 @@ import {
   styleUrls: ['./img.component.scss']
 })
 export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
-  @Input() img: string = ''; //* se comunica con el hijo
+
+  img: string = '';
+
+  @Input()
+  set changeImg(newImg: string) {
+    this.img = newImg;
+    console.log('change just img =>', this.img);
+    //* esto solo se ejecutará cuando cambie el input de la img
+  }
+  @Input() alt: string = '';
 
   @Output() loaded = new EventEmitter<string>(); //* se comunica con el padre
 
   imageDefault = './assets/images/default.png'
+
+  counter = 0;
+
+  counterFn: number | undefined;
 
   constructor() {
     //* before render - only once
@@ -31,12 +45,18 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     //* before render - only once
     //* aquí sí podemos usar async await
     console.log(`ngOnInit => this.img = ${this.img}`);
+
+    this.counterFn = window.setInterval(() => {
+      this.counter += 1;
+      console.log('running counter');
+    }, 1000)
   }
 
-  ngOnChanges(): void {
+  ngOnChanges(changes: SimpleChanges): void {
     //* before and while render
     //* cambios en los *inputs* - muchas veces
     console.log(`ngOnChanges => this.img = ${this.img}`);
+    console.log(`ngOnChanges => `, changes);
   }
 
   ngAfterViewInit(): void {
@@ -48,6 +68,7 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
   ngOnDestroy(): void {
     //* cuando ya no existe el componente
     console.log(`ngOnDestroy`);
+    window.clearInterval(this.counterFn);
   }
 
   imgError() {
