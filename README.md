@@ -453,3 +453,7 @@ export class AppComponent {
 ### Lista de productos
 
 Creamos el componente con `ng g c components/products-list`.
+
+### Componentes y Header
+
+Generamos el nuevo componente con `ng g c components/nav`.
