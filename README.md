@@ -457,3 +457,76 @@ Creamos el componente con `ng g c components/products-list`.
 ### Componentes y Header
 
 Generamos el nuevo componente con `ng g c components/nav`.
+
+### Implementando el sideMenu
+
+Hacemos un menu que se muestra y oculta de la siguiente forma:
+
+nav.component.ts:
+
+```typescript
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-nav',
+  templateUrl: './nav.component.html',
+  styleUrls: ['./nav.component.scss']
+})
+export class NavComponent {
+  activeMenu: boolean = false;
+
+  toggleMenu() {
+    this.activeMenu = !this.activeMenu;
+  }
+}
+
+```
+
+nav.component.html:
+
+```html
+<div class="show-mobile">
+  <div>
+    <button (click)="toggleMenu()"> <!---- se pone en true ----->
+      <img src="./assets/svg/icon_menu.svg" alt="menu">
+    </button>
+    <a href="">
+      <img src="./assets/svg/logo_yard_sale.svg" alt="logo">
+    </a>
+    <a href="">
+      <img src="./assets/svg/icon_shopping_cart.svg" alt="logo">
+    </a>
+  </div>
+  <div class="side-menu" [class.active]="activeMenu"> <!---- se muestra el menu ----->
+    <button (click)="toggleMenu()">Close</button> <!---- se pone en false ---->
+    <ul>
+      <li><a href="">All</a></li>
+      <li><a href="">Clothes</a></li>
+      <li><a href="">Electronics</a></li>
+    </ul>
+  </div>
+</div>
+
+
+```
+
+nav.component.scss:
+
+```scss
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transform: translateX(-100%);
+  transition: all ease-out .5s;
+  &.active {
+    transform: translateX(0);
+  }
+}
+```
