@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
+import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'app-products-list',
@@ -7,6 +8,14 @@ import { Product } from 'src/app/models/product.model';
   styleUrls: ['./products-list.component.scss']
 })
 export class ProductsListComponent {
+
+  //* inyección de dependencias
+  constructor(
+    private storeService: StoreService
+  ) {
+    this.myShoppingCart = this.storeService.getShoppingCart();
+  }
+
   myShoppingCart: Product[] = [];
 
   total: number = 0;
@@ -39,7 +48,7 @@ export class ProductsListComponent {
   ];
 
   onAddToShoppingCart(product: Product) {
-    this.myShoppingCart.push(product);
-    this.total = this.myShoppingCart.reduce((sum, item) => sum + item.price, 0);
+    this.storeService.addProduct(product);
+    this.total = this.storeService.getTotal();
   }
 }

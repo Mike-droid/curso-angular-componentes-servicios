@@ -534,3 +534,11 @@ nav.component.scss:
 ### Comunicación padre e hijo
 
 Usamos el Output.
+
+## Servicios
+
+### Conociendo los servicios
+
+Angular nos permite 'modularizar' (o separar por módulos) la lógica del negocio y de la UI.
+
+Creamos servicios con la CLI: `ng g s services/store`
