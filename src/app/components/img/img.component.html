@@ -3,7 +3,6 @@
   alt="imagen chida"
   *ngIf="img; else elseImg"
   (error)="imgError()"
-  (load)="imgLoaded()"
 >
 <ng-template #elseImg>
   <img [src]="imageDefault" alt="default">

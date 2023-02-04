@@ -530,3 +530,7 @@ nav.component.scss:
   }
 }
 ```
+
+### Comunicación padre e hijo
+
+Usamos el Output.

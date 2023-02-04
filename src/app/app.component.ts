@@ -10,10 +10,6 @@ export class AppComponent {
 
   showImage: boolean = true;
 
-  onLoaded(img: string) {
-    console.log('log padre!', img); //* img viene del hijo
-  }
-
   toggleImage() {
     this.showImage = !this.showImage;
   }
