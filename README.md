@@ -552,3 +552,9 @@ Los servicios también pueden inyectar a otros servicios. Sin embargo, procurá 
 Cada componente crea una instancia del servicio. PERO angular usa el principio o patrón de diseño de **singleton**.
 
 En ingeniería de software, singleton o instancia única es un patrón de diseño que permite restringir la creación de objetos pertenecientes a una clase o el valor de un tipo a un único objeto. Su intención consiste en garantizar que una clase solo tenga una instancia y proporcionar un punto de acceso global a ella.
+
+### Obteniendo datos de una API
+
+Usaremos [fake store api](https://fakestoreapi.com/)
+
+Creamos un servicio para ello: `ng g s services/products`
