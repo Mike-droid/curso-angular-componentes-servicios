@@ -542,3 +542,13 @@ Usamos el Output.
 Angular nos permite 'modularizar' (o separar por módulos) la lógica del negocio y de la UI.
 
 Creamos servicios con la CLI: `ng g s services/store`
+
+### ¿Qué es la inyección de dependencias?
+
+Un componente puede inyectar cuando servicios requiera. (Recuerda no abusar de esto).
+
+Los servicios también pueden inyectar a otros servicios. Sin embargo, procurá **evitar** que un servicio A dependa del servicio B y que el servicio B dependeda del servicio A. Esto genera un error de referencia circular.
+
+Cada componente crea una instancia del servicio. PERO angular usa el principio o patrón de diseño de **singleton**.
+
+En ingeniería de software, singleton o instancia única es un patrón de diseño que permite restringir la creación de objetos pertenecientes a una clase o el valor de un tipo a un único objeto. Su intención consiste en garantizar que una clase solo tenga una instancia y proporcionar un punto de acceso global a ella.
