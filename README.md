@@ -572,3 +572,9 @@ Usamos la angular CLI: `ng g p pipes/reverse`
 Usaremos [date-fns](https://www.npmjs.com/package/date-fns) en nuestro proyecto.
 
 Creamos otra pipe: `ng g p pipes/timeAgo`
+
+### Conociendo las directivas
+
+Las [directivas](https://angular.io/api/core/Directive) son decoradores para modificar el DOM y atributos.
+
+Creamos las directivas con la CLI: `ng g d directives/highlight`

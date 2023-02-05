@@ -12,6 +12,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { ReplaceVowelsForNumbersPipe } from './pipes/replace-vowels-for-numbers.pipe';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ReplaceVowelsForNumbersPipe } from './pipes/replace-vowels-for-numbers.
     NavComponent,
     ReversePipe,
     TimeAgoPipe,
-    ReplaceVowelsForNumbersPipe
+    ReplaceVowelsForNumbersPipe,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
