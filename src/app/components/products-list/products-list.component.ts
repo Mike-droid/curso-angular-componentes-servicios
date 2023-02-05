@@ -15,6 +15,10 @@ export class ProductsListComponent {
 
   products: Product[] = [];
 
+  today: Date = new Date();
+
+  date: Date = new Date(2000, 0, 1); //* el mes usa el índex
+
   //* inyección de dependencias
   constructor(
     private storeService: StoreService,

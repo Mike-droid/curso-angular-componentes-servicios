@@ -558,3 +558,9 @@ En ingeniería de software, singleton o instancia única es un patrón de diseñ
 Usaremos [fake store api](https://fakestoreapi.com/)
 
 Creamos un servicio para ello: `ng g s services/products`
+
+## Pipes y Directives
+
+### Conociendo los pipes
+
+Los [pipes de angular](https://angular.io/guide/pipes) los debemos usar en el HTML, no se utilizan desde TypeScript.
