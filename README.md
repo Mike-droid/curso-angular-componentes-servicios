@@ -564,3 +564,11 @@ Creamos un servicio para ello: `ng g s services/products`
 ### Conociendo los pipes
 
 Los [pipes de angular](https://angular.io/guide/pipes) los debemos usar en el HTML, no se utilizan desde TypeScript.
+
+### Construyendo tu propio pipe
+
+Usamos la angular CLI: `ng g p pipes/reverse`
+
+Usaremos [date-fns](https://www.npmjs.com/package/date-fns) en nuestro proyecto.
+
+Creamos otra pipe: `ng g p pipes/timeAgo`
