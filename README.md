@@ -584,3 +584,9 @@ Creamos las directivas con la CLI: `ng g d directives/highlight`
 ### Reactividad básica
 
 Usaremos [RxJS](https://angular.io/guide/rx-library)
+
+### Guía de estilos de Angular y linters
+
+[Style guide](https://angular.io/guide/docs-style-guide)
+
+Usamos el linter con la CLI: `ng lint`

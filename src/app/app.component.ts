@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   imgParent = '';
 
-  showImage: boolean = true;
+  showImage = true;
 
   toggleImage() {
     this.showImage = !this.showImage;

@@ -14,8 +14,6 @@ export class StoreService {
   //* esta es la forma de declarar observables
   myCart$ = this.myCart.asObservable();
 
-  constructor() { }
-
   addProduct(product: Product) {
     this.myShoppingCart.push(product);
     this.myCart.next(this.myShoppingCart);

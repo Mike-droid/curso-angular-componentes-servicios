@@ -12,14 +12,15 @@ import {
 })
 export class ImgComponent {
 
-  img: string = '';
+  img = '';
 
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('src')
   set changeImg(newImg: string) {
     this.img = newImg;
     //* esto solo se ejecutará cuando cambie el input de la img
   }
-  @Input() alt: string = '';
+  @Input() alt = '';
 
   @Output() loaded = new EventEmitter<string>(); //* se comunica con el padre
 
