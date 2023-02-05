@@ -578,3 +578,9 @@ Creamos otra pipe: `ng g p pipes/timeAgo`
 Las [directivas](https://angular.io/api/core/Directive) son decoradores para modificar el DOM y atributos.
 
 Creamos las directivas con la CLI: `ng g d directives/highlight`
+
+## Best practices
+
+### Reactividad básica
+
+Usaremos [RxJS](https://angular.io/guide/rx-library)
